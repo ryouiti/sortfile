@@ -44,11 +44,13 @@ def rogo_deployment(rogolist):
 
 
 ROGO_RE = re.compile(r"\((.*)\)")
-def sort_file_program():
-    user_selectdir = GUI_select_directory()
+def sort_file_program(user_selectdir=0):
+    if user_selectdir==None:
+        user_selectdir = GUI_select_directory()
     nowdir = user_selectdir
     for selectdir_list_name in os.listdir(nowdir):
-        if rogolist:=ROGO_RE.findall(selectdir_list_name):
+        selectdir_list_name_stirp = selectdir_list_name.strip(" ")
+        if rogolist:=ROGO_RE.findall(selectdir_list_name_stirp):
             rogo_split = rogo_deployment(rogolist)
             for rogo in rogo_split:
                 rogo_abspath = os.path.join(nowdir,rogo)
