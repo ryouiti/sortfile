@@ -14,6 +14,7 @@ import re
 import shutil
 import sys
 import tkinter.filedialog
+import gui
 # def select_mode(option = sys.argv[0])->int:
 #     option=option.lower()
 #     if option =="-n":
@@ -31,10 +32,7 @@ import tkinter.filedialog
 #     return nowdir
 
 
-def GUI_select_directory()->str:
-    iDir = os.path.abspath(os.path.dirname(__file__))
-    selected_file_path = tkinter.filedialog.askdirectory(initialdir = iDir)
-    return  selected_file_path
+
 
 def rogo_deployment(rogolist):
     rogo_split=""
@@ -46,7 +44,7 @@ def rogo_deployment(rogolist):
 ROGO_RE = re.compile(r"\((.*)\)")
 def sort_file_program(user_selectdir=0):
     if user_selectdir==None:
-        user_selectdir = GUI_select_directory()
+        user_selectdir = gui.GUI_select_directory()
     nowdir = user_selectdir
     for selectdir_list_name in os.listdir(nowdir):
         selectdir_list_name_stirp = selectdir_list_name.strip(" ")
